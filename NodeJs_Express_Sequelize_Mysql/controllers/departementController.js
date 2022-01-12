@@ -10,7 +10,7 @@ const User = db.users
 
 const addDepartement = async (req, res) => {
     let info = {
-        id    : res.body.id,
+        // id          : res.body.id,
         name        : res.body.name,
         description : res.body.description
         

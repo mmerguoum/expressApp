@@ -3,26 +3,24 @@ const cors = require('cors')
 
 const app = express()
 
-let corsOptions = {
-    origin :'https://localhost:3000' 
+let corOptions = {
+    origin :'https://localhost:8081' 
 }
 
 
 //middelwewars
-app.use(cors(corsOptions))
+app.use(cors(corOptions))
 
 app.use(express.json())
 
-app.use(express.urlencoded({extended : true}))
+app.use(express.urlencoded({ extended : true }))
 
 
 //routers
 
-const router1 = require('./routes/departementRouter.js')
-app.use('/api/departements', router1)
-
-const router2 = require('./routes/userRouter.js')
-app.use('/api/users', router2)
+const router = require('./routes/departementRouter.js')
+app.use('/api/departements', router)
+// app.use('/api/users', router)
 
 
 //testing api
@@ -31,7 +29,7 @@ app.get('/',(req,res) => {
 })
 
 //PORT
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 8080
 
 
 //server

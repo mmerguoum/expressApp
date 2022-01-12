@@ -10,7 +10,7 @@ const User = db.users
 
 const addUser = async (req, res) => {
     let info = {
-        id    : res.body.id,
+        id          : res.body.id,
         name        : res.body.name,
         email       : res.body.email,
         password    : res.body.password,
