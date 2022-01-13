@@ -7,6 +7,16 @@ const User = db.users
 
 //main Work
 
+const getAddDepartementForm = async (req, res) => {
+
+    Departement.findAll().then(results => {
+        res.render('departement', {
+            results
+        })
+    }).catch(err => console.log(err));
+
+}
+
 //1.create departement
 
 const addDepartement = async (req, res) => {
@@ -59,7 +69,7 @@ const postUpdateDepartementForm = async (req, res) => {
     })
     .then(success => {
         console.log('succefully .. !')
-        res.redirect('/allDepartements')
+        res.redirect('/departement/allDepartements')
     })
 }
 
@@ -68,7 +78,7 @@ const postUpdateDepartementForm = async (req, res) => {
 //5.delete departement by id
 
 const deleteDepartement = async (req, res) => {
-    let id = req.body.id
+    const id = req.body.id;
     Departement.findByPk(id)
     .then(departement => {
         console.log(departement)
@@ -80,6 +90,7 @@ const deleteDepartement = async (req, res) => {
 }
 
 module.exports = {
+    getAddDepartementForm,
     addDepartement,
     getAllDepartements,
     getUpdateDepartementForm,

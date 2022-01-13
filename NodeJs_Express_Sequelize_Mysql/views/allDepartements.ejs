@@ -11,7 +11,7 @@
 <body>
  
 <div class="container mt-4">
-  <a href="/departement" class="btn btn-sm btn-primary">addDepartment</a><br/><br/>
+  <a href="/departement/addDepartement" class="btn btn-sm btn-primary">addDepartment</a><br/><br/>
   <table class="table table-dark table-striped">
     <thead>
       <tr>
@@ -28,7 +28,7 @@
                     <a href="/updateDepartement/<%= dep.id %>" class="btn btn-sm btn-primary">Edit</a>                   
                 </td>
                 <td>
-                  <form action="/departement/allDepartements/deleteDepartement" method="POST">
+                  <form action="/deleteDepartement" method="POST">
                     <input type="hidden" name="id" value="<%= dep.id %>">
                     <button class="btn btn-sm btn-danger">Delete</button>
                    </form>

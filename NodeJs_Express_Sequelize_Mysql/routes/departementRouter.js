@@ -3,18 +3,20 @@ const departementController = require('../controllers/departementController.js')
 
 const router = require('express').Router()
 
-router.post('/addDepartement',departementController.addDepartement)
+router.get('/departement/addDepartement', departementController.getAddDepartementForm);
 
-router.get('/allDepartements',departementController.getAllDepartements)
+router.post('/departement/addDepartement',departementController.addDepartement)
 
-
-
-router.get('/:id',departementController.getUpdateDepartementForm)
-
-router.post('/',departementController.postUpdateDepartementForm)
+router.get('/departement/allDepartements',departementController.getAllDepartements)
 
 
-router.post('/',departementController.deleteDepartement)
+
+router.get('/updateDepartement/:id',departementController.getUpdateDepartementForm)
+
+router.post('/updateDepartement',departementController.postUpdateDepartementForm);
+
+
+router.post('/deleteDepartement',departementController.deleteDepartement);
 
 router.get('/', (req,res) => {
     res.render('departement')
