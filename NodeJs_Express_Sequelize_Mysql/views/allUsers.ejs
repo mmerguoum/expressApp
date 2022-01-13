@@ -11,7 +11,7 @@
 <body>
  
 <div class="container mt-4">
-  <a href="/User" class="btn btn-sm btn-primary">addUser</a><br/><br/>
+  <a href="/User/addUser" class="btn btn-sm btn-primary">addUser</a><br/><br/>
   <table class="table table-dark table-striped">
     <thead>
       <tr>
@@ -27,8 +27,13 @@
                 <td><%= dep.name %></td>
                 <td><%= dep.email %></td>
                 <td>
-                    <a href="/User/updateUser/<%= dep.id %>" class="btn btn-sm btn-primary">Edit</a>
-                    <a href="delete/<%= dep.id %>" class="btn btn-sm btn-danger">Delete</a>
+                    <a href="/updateUser/<%= dep.id %>" class="btn btn-sm btn-primary">Edit</a>
+                </td>
+                <td>
+                  <form action="/deleteUser" method="POST">
+                    <input type="hidden" name="id" value="<%= dep.id %>">
+                    <button class="btn btn-sm btn-danger">Delete</button>
+                   </form>
                 </td>
             </tr>
         <% }); %>

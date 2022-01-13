@@ -1,5 +1,7 @@
 const express = require('express')
 const cors = require('cors')
+const Departement = require('./models/DepartementModel')
+const User = require('./models/UserModel')
 
 const app = express()
 
@@ -32,7 +34,7 @@ app.use('/', departementRouter);
 // app.use('/', departementRouter)
 // app.use('/deleteDepartement', departementRouter)
 
-app.use('/updateUser', routerUser)
+app.use('/', routerUser)
 app.use('/User', routerUser)
 
 
@@ -46,6 +48,8 @@ app.set('view engine', 'ejs');
 app.get('/',(req,res) => {
     res.json({message : 'hello from api'})
 })
+
+
 
 //PORT
 const PORT = process.env.PORT || 8080

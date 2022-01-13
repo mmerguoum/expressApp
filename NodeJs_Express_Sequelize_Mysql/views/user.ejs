@@ -16,27 +16,32 @@
   <form action="/User/addUser" method="post">
     <div class="form-group">
       <label for="name">Name:</label>
-      <input type="text" class="form-control" id="name" placeholder="Enter Name"  name="name" required>
+      <input type="text" class="form-control" id="name" placeholder="Enter Your Name"  name="name" required>
     </div>
     <div class="form-group">
         <label for="name">Email:</label>
-        <input type="text" class="form-control" id="email" placeholder="Enter Name"  name="email" required>
+        <input type="text" class="form-control" id="email" placeholder="Enter Your Email"  name="email" required>
       </div>
     <div class="form-group">
-      <label for="phone">Description:</label>
-      <input type="text" class="form-control" id="pwd" placeholder="Enter Phone No" name="password" required>
+      <label for="phone">Password:</label>
+      <input type="password" class="form-control" id="pwd" placeholder="Enter Your Password" name="password" required>
     </div>
     <div class="form-group">
       <label for="exampleFormControlSelect1">Departements</label>
       
-
-   
-    
-      <select class="form-control" id="exampleFormControlSelect1">
-
-      </select>
-
+      <select name="departementId">
+        <option value="" selected>Departement</option>
+        <% if(results.length === 0) { %> 
+        <option value="1">1</option>
+        <% } else { %>
+            <% for(let result of results) { %>
+                <option value="<%= result.id %>"><%= result.name %></option>
+            <% } %>
+        <% } %>
+    </select>
+      
     </div>
+  
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>

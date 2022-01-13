@@ -6,20 +6,32 @@ const User = db.users
 
 //main Work
 
-//1.create user
+
+
+const getAddUserForm = async (req, res) => {
+
+    Departement.findAll().then(results => {
+        res.render('user', {
+            results : results
+        })
+    }).catch(err => console.log(err));
+
+}
+
+//1.create departement
 
 const addUser = async (req, res) => {
     let info = {
         name        : req.body.name,
-        email       : req.body.email,
+        email       : req.body.name,
         password    : req.body.password,
+        departementId : req.body.departementId
         
     }
     const user = await User.create(info)
     res.status(200).send(user) 
 
 }
-
 
 
 //2. get all users
@@ -32,28 +44,61 @@ const getAllUsers = async (req, res) => {
 }
 
 
-//4. update user
 
-const updateUser = async (req, res) => {
+
+//3. update user
+
+const getUpdateUserForm = async (req, res) => {
     let id = req.params.id
-    
-    const user = await User.update(req.body, {where : {id: id}})
-    res.status(200).send(user)
+    User.findByPk(id)
+    .then(user => {
+        res.render('userUpdate', {
+            dep: user
+        })  
+    })
+}
+
+// post Form
+const postUpdateUserForm = async (req, res) => {
+    const userId = req.body.id
+    const name = req.body.name
+    const email = req.body.email
+
+    User.findByPk(userId)
+    .then(user => {
+        user.name = name
+        user.email = email
+        
+
+        return user.save()
+    })
+    .then(success => {
+        console.log('succefully .. !')
+        res.redirect('/user/allUsers')
+    })
 }
 
 
-//5.delete user by id
+//4.delete user by id
 
 const deleteUser = async (req, res) => {
-    let id = req.params.id
-    await User.destroy({where : {id: id}})
-    res.status(200).send('user is deleted  !')
+    const id = req.body.id;
+    User.findByPk(id)
+    .then(user => {
+        console.log(user)
+        return user.destroy()  
+    }).then(success => {
+        console.log('Deleted Successfully !!');
+        res.redirect('/user/allusers');
+    }) 
 }
 
 
 module.exports = {
     addUser,
     getAllUsers,
-    updateUser,
+    getAddUserForm,
+    getUpdateUserForm,
+    postUpdateUserForm,
     deleteUser
 }
