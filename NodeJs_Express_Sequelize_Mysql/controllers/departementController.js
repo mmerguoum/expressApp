@@ -29,40 +29,60 @@ const getAllDepartements = async (req, res) => {
 }
 
 
-// 3. get single departements
 
-const getOneDepartement = async (req, res) => {
+
+
+//4. get update Form with values
+
+const getUpdateDepartementForm = async (req, res) => {
     let id = req.params.id
-    let departement = await Departement.findOne({where : { id: id }})
-    res.render('updateDepartement')
-}
-
-
-
-//4. update Departement
-
-const updateDepartement = async (req, res) => {
-    let id = req.params.id   
-    const departement = await Departement.update(req.body, {where : { id: id }})
-    res.render('departement', {
-        dep: departement
+    Departement.findByPk(id)
+    .then(departement => {
+        res.render('updateDepartement', {
+            dep: departement
+        })  
     })
 }
+
+// post Form
+const postUpdateDepartementForm = async (req, res) => {
+    const departementId = req.body.id
+    const name = req.body.name
+    const description = req.body.description
+
+    Departement.findByPk(departementId)
+    .then(departement => {
+        departement.name = name
+        departement.description = description
+
+        return departement.save()
+    })
+    .then(success => {
+        console.log('succefully .. !')
+        res.redirect('/allDepartements')
+    })
+}
+
 
 
 //5.delete departement by id
 
 const deleteDepartement = async (req, res) => {
-    let id = req.params.id
-    await Departement.destroy({where : { id: id }})
-    res.status(200).send('departement is deleted  !')
+    let id = req.body.id
+    Departement.findByPk(id)
+    .then(departement => {
+        console.log(departement)
+        return departement.destroy()  
+    }).then(success => {
+        console.log('Deleted Successfully !!');
+        res.redirect('/departement/allDepartements');
+    }) 
 }
-
 
 module.exports = {
     addDepartement,
     getAllDepartements,
-    getOneDepartement,
-    updateDepartement,
+    getUpdateDepartementForm,
+    postUpdateDepartementForm,
     deleteDepartement
 }

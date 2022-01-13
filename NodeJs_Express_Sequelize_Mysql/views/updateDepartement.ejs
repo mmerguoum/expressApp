@@ -12,9 +12,9 @@
 </head>
 <body>
  <div class="container mt-4">
-    <a href="/departement/addDepartement" class="btn btn-sm btn-primary">getAllDepartment</a><br/><br/>
-  <form action="/Departement/updateDepartement" method="post">
-    <input type="hidden"  name="id">
+    <a href="/departement/addDepartement" class="btn btn-sm btn-primary">Department</a><br/><br/>
+  <form action="/updateDepartement" method="post">
+    <input type="hidden"  name="id" value="<%= dep.id %>" >
     <div class="form-group">
       <label for="name"><h5>Name:</h5></label>
       <input type="text" class="form-control" id="name" placeholder="Enter Name"  name="name" value="<%= dep.name %>" required>

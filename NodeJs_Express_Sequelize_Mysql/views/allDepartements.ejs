@@ -25,8 +25,13 @@
                 <td><%= dep.name %></td>
                 <td><%= dep.description %></td>
                 <td>
-                    <a href="updateDepartement/<%= dep.id %>" class="btn btn-sm btn-primary">Edit</a>
-                    <a href="deleteDepartement/<%= dep.id %>" class="btn btn-sm btn-danger">Delete</a>
+                    <a href="/updateDepartement/<%= dep.id %>" class="btn btn-sm btn-primary">Edit</a>                   
+                </td>
+                <td>
+                  <form action="/departement/allDepartements/deleteDepartement" method="POST">
+                    <input type="hidden" name="id" value="<%= dep.id %>">
+                    <button class="btn btn-sm btn-danger">Delete</button>
+                   </form>
                 </td>
             </tr>
         <% }); %>

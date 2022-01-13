@@ -8,11 +8,13 @@ router.post('/addDepartement',departementController.addDepartement)
 router.get('/allDepartements',departementController.getAllDepartements)
 
 
-router.get('/:id',departementController.getOneDepartement)
 
-router.put('/:id',departementController.updateDepartement)
+router.get('/:id',departementController.getUpdateDepartementForm)
 
-router.delete('/:id',departementController.deleteDepartement)
+router.post('/',departementController.postUpdateDepartementForm)
+
+
+router.post('/',departementController.deleteDepartement)
 
 router.get('/', (req,res) => {
     res.render('departement')

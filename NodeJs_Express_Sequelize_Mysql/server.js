@@ -18,17 +18,16 @@ app.use(express.urlencoded({ extended : true }))
 
 //routers
 
-const router = require('./routes/departementRouter')
+const departementRouter = require('./routes/departementRouter')
 const routerUser = require('./routes/userRouter')
-app.use('/Departement', router)
-app.use('/User', routerUser)
-// app.use('/dep', router)
-// app.use('/', routerUser)
-app.use('/allDepartements', router)
-app.use('/Departement', router)
+app.use('/departement', departementRouter)
+app.use('/updateDepartement', departementRouter)
+app.use('/allDepartements', departementRouter)
+app.use('/', departementRouter)
+app.use('/deleteDepartement', departementRouter)
+
 app.use('/updateUser', routerUser)
-app.use('/updateDepartement', router)
-app.use('/deleteDepartement', router)
+app.use('/User', routerUser)
 
 
 
