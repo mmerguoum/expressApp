@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+ <title>Document</title>
+</head>
+<body>
+ <div class="container mt-4">
+    <a href="/departement/addDepartement" class="btn btn-sm btn-primary">getAllDepartment</a><br/><br/>
+  <form action="/Departement/updateDepartement" method="post">
+    <input type="hidden"  name="id">
+    <div class="form-group">
+      <label for="name"><h5>Name:</h5></label>
+      <input type="text" class="form-control" id="name" placeholder="Enter Name"  name="name" value="<%= dep.name %>" required>
+    </div>
+    <div class="form-group">
+      <label for="phone"><h5>Description:</h5></label>
+      <input type="text" class="form-control" id="pwd" placeholder="Enter Phone No" name="description" value="<%= dep.description %>" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+</body>
+</html>

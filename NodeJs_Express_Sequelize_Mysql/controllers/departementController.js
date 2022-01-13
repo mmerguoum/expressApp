@@ -4,15 +4,15 @@ const db = require('../models')
 const Departement = db.departements
 const User = db.users
 
+
 //main Work
 
 //1.create departement
 
 const addDepartement = async (req, res) => {
     let info = {
-        // id          : res.body.id,
-        name        : res.body.name,
-        description : res.body.description
+        name        : req.body.name,
+        description : req.body.description
         
     }
     const departement = await Departement.create(info)
@@ -23,24 +23,30 @@ const addDepartement = async (req, res) => {
 
 const getAllDepartements = async (req, res) => {
     let departements = await Departement.findAll({})
-    res.status(200).send(departements)
+    res.render('allDepartements', {
+        dep: departements
+    })
 }
 
-//3. get single departements
+
+// 3. get single departements
 
 const getOneDepartement = async (req, res) => {
     let id = req.params.id
-    let departement = await Departement.findOne({where : {id: id}})
-    res.status(200).send(departement)
+    let departement = await Departement.findOne({where : { id: id }})
+    res.render('updateDepartement')
 }
+
+
 
 //4. update Departement
 
 const updateDepartement = async (req, res) => {
-    let id = req.params.id
-    
-    const departement = await Departement.update(req.body, {where : {id: id}})
-    res.status(200).send(departement)
+    let id = req.params.id   
+    const departement = await Departement.update(req.body, {where : { id: id }})
+    res.render('departement', {
+        dep: departement
+    })
 }
 
 
@@ -48,15 +54,15 @@ const updateDepartement = async (req, res) => {
 
 const deleteDepartement = async (req, res) => {
     let id = req.params.id
-    await Departement.destroy({where : {id: id}})
+    await Departement.destroy({where : { id: id }})
     res.status(200).send('departement is deleted  !')
 }
 
 
 module.exports = {
     addDepartement,
-    getOneDepartement,
     getAllDepartements,
+    getOneDepartement,
     updateDepartement,
     deleteDepartement
 }

@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
         Departement.hasMany(models.User,{
             onDelete: 'cascade',
             onUpdate: 'restrict',
-            as:"user",
+            as:"User",
             foreignKey:"idDepartement"
         });
     };

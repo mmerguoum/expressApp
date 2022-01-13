@@ -26,8 +26,8 @@ const db = {}
 
 db.Sequelize = Sequelize
 db.sequelize = sequelize
-db.Departement = require('./DepartementModel.js')(sequelize, DataTypes)
-db.User = require('./UserModel.js')(sequelize, DataTypes)
+db.departements = require('./DepartementModel.js')(sequelize, DataTypes)
+db.users = require('./UserModel.js')(sequelize, DataTypes)
 
 
 db.sequelize.sync({force : false})
