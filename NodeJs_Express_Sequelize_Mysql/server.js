@@ -6,11 +6,11 @@ const User = require('./models/UserModel')
 const app = express()
 
 let corOptions = {
-    origin :'https://localhost:8080' 
+    origin :'https://localhost:3000' 
 }
 
 
-//middelwewars
+//middelwars
 app.use(cors(corOptions))
 
 app.use(express.json())
@@ -19,21 +19,10 @@ app.use(express.urlencoded({ extended : true }))
 
 
 //routers
-
 const departementRouter = require('./routes/departementRouter')
 const routerUser = require('./routes/userRouter')
-// app.use('/departement', departementRouter)
-// app.use('/updateDepartement', departementRouter)
-// app.use('/allDepartements', departementRouter)
-// app.use('/', departementRouter)
-// app.use('/deleteDepartement', departementRouter)
 
-// app.use('/departement', departementRouter)
 app.use('/', departementRouter);
-// app.use('/', departementRouter)
-// app.use('/', departementRouter)
-// app.use('/deleteDepartement', departementRouter)
-
 app.use('/', routerUser)
 app.use('/User', routerUser)
 
@@ -44,7 +33,7 @@ app.use('/User', routerUser)
 app.set('view engine', 'ejs');
 
 
-//testing api
+//testing 
 app.get('/',(req,res) => {
     res.json({message : 'hello from api'})
 })
@@ -52,7 +41,7 @@ app.get('/',(req,res) => {
 
 
 //PORT
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 3000
 
 
 //server

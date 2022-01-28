@@ -26,7 +26,7 @@ const addDepartement = async (req, res) => {
         
     }
     const departement = await Departement.create(info)
-    res.status(200).send(departement) 
+    res.status(200).redirect('/departement/allDepartements') 
 }
 
 //2. get all departements

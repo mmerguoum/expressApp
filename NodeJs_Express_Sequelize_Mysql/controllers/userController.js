@@ -4,9 +4,9 @@ const db = require('../models')
 const Departement = db.departements
 const User = db.users
 
+
+
 //main Work
-
-
 
 const getAddUserForm = async (req, res) => {
 
@@ -18,19 +18,18 @@ const getAddUserForm = async (req, res) => {
 
 }
 
-//1.create departement
+//1.create user
 
 const addUser = async (req, res) => {
     let info = {
         name        : req.body.name,
-        email       : req.body.name,
+        email       : req.body.email,
         password    : req.body.password,
         departementId : req.body.departementId
         
     }
     const user = await User.create(info)
-    res.status(200).send(user) 
-
+    res.status(200).redirect('/user/allUsers')
 }
 
 
